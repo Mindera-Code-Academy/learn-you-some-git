@@ -6,6 +6,7 @@ var drag_offset
 
 export var id = "" setget set_id
 export var command = "" setget set_command
+export var display_command = "" setget set_display_command
 export var description = "" setget set_description
 export var energy = 0 setget set_energy
 
@@ -94,15 +95,20 @@ func set_command(new_command):
 	if commands.size() > 1:
 		args = commands[1].replace("]", "")
 		args = args.replace(", ", "/")
-		args = args.replace("ref", " [img=20]images/ref.svg[/img] ")
-		args = args.replace("commit", " [img=20]images/commit.svg[/img] ")
-		args = args.replace("string", " [img=20]images/string.svg[/img] ")
-		args = args.replace("head", " [img=20]images/head.svg[/img] ")
-		args = args.replace("file", " [img=20]images/file.svg[/img] ")
-		args = args.replace("remote", " [img=20]images/remote.svg[/img] ")
+		args = args.replace("ref", "[img=18]images/ref.svg[/img] ")
+		args = args.replace("commit", "[img=18]images/commit.svg[/img] ")
+		args = args.replace("string", "[img=18]images/string.svg[/img] ")
+		args = args.replace("head", "[img=18]images/head.svg[/img] ")
+		args = args.replace("file", "[img=18]images/file.svg[/img] ")
+		args = args.replace("remote", "[img=18]images/remote.svg[/img] ")
 	$Label.bbcode_text = commands[0] + args
 	#$Label.text = command
 
+func set_display_command(display_command):
+	$Label.bbcode_text = display_command
+	$Label.remove_font_override("normal_font")
+	$Label.set("custom_colors/default_color", "ffffff")
+	
 func set_description(new_description):
 	description = new_description
 	$Description.text = description

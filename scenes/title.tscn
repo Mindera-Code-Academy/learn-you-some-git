@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://styles/theme.tres" type="Theme" id=1]
-[ext_resource path="res://images/oh-my-git.png" type="Texture" id=2]
+[ext_resource path="res://images/the.png" type="Texture" id=2]
 [ext_resource path="res://scenes/title.gd" type="Script" id=3]
 [ext_resource path="res://fonts/default.tres" type="DynamicFont" id=5]
+
+[sub_resource type="ImageTexture" id=1]
 
 [node name="Title" type="Control"]
 anchor_right = 1.0
@@ -11,34 +13,22 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_vertical_guides_": [ 960.0 ]
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 960, 298 )
+texture = ExtResource( 2 )
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 790.778
-margin_top = 594.135
-margin_right = 1131.78
-margin_bottom = 650.135
-custom_fonts/font = ExtResource( 5 )
+margin_left = 787.0
+margin_top = 548.0
+margin_right = 1128.0
+margin_bottom = 604.0
 custom_colors/font_color = Color( 0.533333, 0.392157, 0.392157, 1 )
-text = "by bleeptrack & blinry"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label3" type="Label" parent="."]
-margin_left = 709.713
-margin_top = 621.416
-margin_right = 1209.71
-margin_bottom = 677.416
 custom_fonts/font = ExtResource( 5 )
-custom_colors/font_color = Color( 0.533333, 0.392157, 0.392157, 1 )
-text = "Original score by winniehell"
+text = "v1.0.0 - MS6"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 784.553
@@ -60,18 +50,23 @@ margin_right = 351.0
 margin_bottom = 83.0
 text = "Sandbox"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Button4" type="Button" parent="VBoxContainer"]
 margin_top = 88.0
 margin_right = 351.0
 margin_bottom = 127.0
+text = "Credits"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 132.0
+margin_right = 351.0
+margin_bottom = 171.0
 text = "Quit"
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2" type="Sprite" parent="."]
+scale = Vector2( 347, 258 )
+texture = SubResource( 1 )
 
-[node name="oh-my-git" type="Sprite" parent="Sprite"]
-position = Vector2( 967.924, 306.066 )
-scale = Vector2( 0.320895, 0.320895 )
-texture = ExtResource( 2 )
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="levels"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="sandbox"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="credits"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="quit"]

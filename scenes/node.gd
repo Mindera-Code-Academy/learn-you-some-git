@@ -58,10 +58,13 @@ func apply_forces():
 func id_set(new_id):
 	id = new_id
 	$ID.text = id
-	if type == "ref":
+	$Content/IDLabel.text = id.substr(0, 7)
+	if type == "ref":		
 		$ID.text = $ID.text.replace("refs/heads/", "")
 		$ID.text = $ID.text.replace("refs/remotes/", "")
 		$ID.text = $ID.text.replace("refs/tags/", "")
+		
+	
 	
 func content_set(new_content):
 	content = new_content
@@ -71,7 +74,7 @@ func content_set(new_content):
 func type_set(new_type):
 	type = new_type
 	if type != "ref":
-		$ID.text = $ID.text.substr(0,8)
+		$ID.text = $ID.text.substr(0, 8)
 	z_index = -1
 	match new_type:
 		"blob":
@@ -85,6 +88,8 @@ func type_set(new_type):
 			$Sprite.texture = preload("res://nodes/blob.svg")
 		"ref":
 			$Sprite.texture = preload("res://nodes/ref.svg")
+			if "remote" in self.id:
+				$Sprite.modulate = "ff0000"
 			id_always_visible = true
 		"head":
 			$Sprite.texture = preload("res://nodes/head3.svg")
@@ -115,12 +120,14 @@ func _on_hover():
 	hovered = true
 	if not id_always_visible and type != "head":
 		content_label.visible = true
+		$Content/IDLabel.visible = true
 		#$ID.visible = true
 	
 func _on_unhover():
 	hovered = false
 	if not id_always_visible and type != "head":
 		content_label.visible = false
+		$Content/IDLabel.visible = false
 		#$ID.visible = false
 
 func _input(event):

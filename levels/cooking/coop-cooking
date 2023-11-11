@@ -1,0 +1,123 @@
+title = Investigative cooking, featuring time travel
+cards = cooking-pull cooking-push cooking-show cooking-cat cooking-checkout cooking-revert
+
+[description]
+
+The great thing about git is that it allows us to share our workbench, and even our history, with basically everyone. 
+This feature really comes in handy when other people need your help, like the current situation:
+
+Your friend has, like you, started with an empty pot, and has added ingredients one after another, and in the heat of the moment, it seems he must've tossed something inside he shouldn't. As soon as he tried cooking it, all sorts of alarms ringed up, something about radiation?
+No matter, he's asked you for help. You are now honor-bound to help him - even if just because otherwise you'll probably get turned to radioactive dust.
+
+The first step is to bring his pot and the actions he made to that pot back to your kitchen for inspection. This sounds hard, but it's actually very easy - and it's even easier when in card form!
+
+After that, you should get ready for your first time-travel jump! Jump to the end result of your friend's experiment - the blue one, not the red one (that's what you know his latest "experiment" to be), and not the yellow box where it is pointing to.
+
+After that, find out what he did wrong, and revert it, taking it out of the pot.
+
+Finally, send your friend the now food-safe pot!
+
+[setup]
+
+touch pot
+git add .
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "I put the pot on the stove"
+git branch -D main
+git branch 
+
+echo '
+
+        _ _     _                          _    
+   __ _(_| |_  (_)___  __      ____ _  ___| | __
+  / _` | | __| | / __| \ \ /\ / / _` |/ __| |/ /
+ | (_| | | |_  | \__ \  \ V  V | (_| | (__|   < 
+  \__, |_|\__| |_|___/   \_/\_/ \__,_|\___|_|\_\
+  |___/                                         
+
+  make your own ascii art!
+   https://patorjk.com/software/taag
+' > pot
+git add pot
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "Doing my own thing"
+
+[setup friend]
+
+touch pot
+git add .
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "I put the pot on the stove"
+echo -e "flour
+
+
+
+
+
+
+
+" > pot
+git add pot
+git commit -m "Add some ingredients"
+echo -e "flour
+
+water
+
+
+
+
+
+" > pot
+git add pot
+git commit -m "Add some ingredients"
+echo -e "flour
+
+water
+
+uranium
+
+
+
+" > pot
+git add pot
+git commit -m "Add some ingredients?"
+echo -e "flour
+
+water
+
+uranium
+
+juices
+
+" > pot
+git add pot
+git commit -m "Add some ingredients"
+git switch -c experiments
+git branch -D main
+
+[actions]
+
+# replace the contents of the file if the last condition of the last test worked... brittle!
+git show HEAD^ | grep -i "+.*chemical X" && echo "A bunch of girls, puffed with power. You feel this reference might be dated just by looking at the spider webs all around. How did those get here?" > pot
+
+
+[win]
+
+# Travel to your friend's experiment locally
+test $(git rev-parse --abbrev-ref HEAD) == experiments
+
+# Are all the ingredients in the pot inside your kitchen food-safe?
+test "$(grep -q uranium pot && echo false || echo true)" == "true"
+
+[win friend]
+
+# Are all the ingredients in the pot inside your friend's kitchen food-safe?
+git reset --hard experiments
+test "$(grep -q uranium pot && echo false || echo true)" == "true"
+
+
+[congrats]
+
+And just like that, a nuclear disaster was averted. We should really consider storing nuclear material farther away from the pantry.
+Here's a couple of extra credits things you could try:
+
+- Have you noticed you both have the "cat pot" card and the "Show changes" card? Do you think you can use just one or just the other?
+- What were you working on before helping your friend? 
+- Try to go for the terminal award!

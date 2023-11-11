@@ -178,5 +178,68 @@
         "id": "file-copy",
         "command": "cp [file] [string]",
         "description": "Make a copy of a file."
+    },
+    {
+        "id": "cat",
+        "command": "cat [file]",
+        "description": "Shows the content of a file. No cats were harmed in the making of this program."
+    },
+    {
+        "id": "cooking-ingredient",
+        "command": "echo [string] >> pot",
+        "description": "Add an ingredient of your choice to the pot."
+    },
+    {
+        "id": "cooking-commit",
+        "displayCommand": "Let him cook!",
+        "command": "git add pot; git commit -m 'I added some ingredients!'; echo '20 minutes of heat' >> pot; git add pot; git commit -m 'Added heat...'",
+        "description": "Close the pot and let it cook."
+    },
+    {
+        "id": "cooking-cat",
+        "command": "cat pot",
+        "description": "Take a peek at what's inside the open pot right now."
+    }, 
+    {
+        "id": "cooking-reset",
+        "displayCommand": "Throw out the pot!",
+        "command": "git switch main; git reset --hard 74c1532",
+        "description": "Put the pot aside and restart from the beginning, with just one empty pot."
+    },
+    {
+        "id": "cooking-checkout",
+        "displayCommand": "Time travel!",
+        "command": "git checkout [commit, ref]",
+        "description": "Time travel to a specific moment in time!"
+    },
+    {
+        "id": "cooking-answer",
+        "displayCommand": "Write in solution",
+        "command": "echo [string] > solution",
+        "description": "Set your answer!"
+    },
+    {
+        "id": "cooking-pull",
+        "displayCommand": "Bring in their work to yours",
+        "command": "git fetch friend experiments; git switch experiments; git switch main",
+        "description": "Take in what your friend did into your workbench!"
+    },    
+    {
+        "id": "cooking-push",
+        "displayCommand": "Push out your work to theirs",
+        "command": "git push friend experiments",
+        "description": "Push out what's on your workbench to your friend!"
+    },
+    {
+        "id": "cooking-revert",
+        "displayCommand": "Revert action",
+        "command": "git revert [commit]",
+        "description": "Revert a specific action on the timeline!"
+    },
+    {
+        "id": "cooking-show",
+        "displayCommand": "Show changes",
+        "command": "git show [commit]",
+        "description": "Show the changes for each moment in time!"
     }
 ]

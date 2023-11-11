@@ -39,6 +39,8 @@ func draw_card(card):
 	
 	new_card.id = card["id"]
 	new_card.command = card["command"]
+	if card.has("displayCommand"):
+		new_card.display_command = card["displayCommand"]
 	new_card.description = card["description"]
 	new_card.energy = 0 #card.energy
 	new_card.position = Vector2(rect_size.x, rect_size.y*2)

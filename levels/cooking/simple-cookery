@@ -1,0 +1,57 @@
+title = Simple cookery
+cards = cooking-ingredient cooking-commit cooking-cat cooking-reset
+
+[description]
+
+Let's practice cooking! Thankfully, since it's all digital we can be as messy as we want!
+You stand before an open pot, and have a couple of actions available to you:
+
+- Adding an ingredient to the pot
+- Looking at what's in the pot
+- Closing the lid and heating the pot for a while
+
+If something happens, don't fret! Just throw your pot away and we'll give you a pot identical to your current pot. We'll keep your old pot for historical purposes, though!
+
+Anyway, can you follow this simple recipe? I forgot what it results into, but let's find out!
+
+-- PROF.U's BIRTHDAY CAKE --
+- A dash of [u]sugar[/u]
+- A dash of [u]spice[/u]
+- A dash of [u]everything nice[/u]
+- [i]20 mins cooking[/i]
+- Another dash of [u]chemical X[/u]
+- [i]20 mins heat[/i]
+
+-- Serves three, maybe four depending on canon --
+
+[setup]
+
+touch pot
+git add .
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "I put the pot on the stove"
+git branch -D main
+
+[actions]
+
+# replace the contents of the file if the last condition of the last test worked... brittle!
+git show HEAD^ | grep -i "+.*chemical X" && echo "A bunch of girls, puffed with power. You feel this reference might be dated just by looking at the spider webs all around. How did those get here?" > pot
+
+
+[win]
+
+# Add in the ingredients and cook the... cake?
+git show HEAD^^^ | grep -i "+.*sugar"
+git show HEAD^^^ | grep -i "+.*spice"
+git show HEAD^^^ | grep -i "+.*everything nice"
+git show HEAD^ | grep -i "+.*chemical X"
+
+
+[congrats]
+
+Oh, crud. For some reason, our pot doesn't have quite what I expected it to have. Take a look using the appropriate card and find out for yourself!
+
+Here's a couple of things to think about while I try and get these kids out of the kitchen - or put your detective hat on and just go to the next level:
+- Restart the whole thing! Notice we keep your original pot intact, in case you need it!
+- Try to figure out what commands the white labelled cards do
+- And after that, try to do this entire exercise just with the terminal, completing all levels with the terminal comes with a prize of [u]one actual dollar[/u] for the first to reach that goal
+

@@ -151,7 +151,9 @@ func update_node_positions():
 				var hash_regex = RegEx.new()
 				hash_regex.compile("[a-f0-9]+")
 				var regex_match = hash_regex.search(line)
-				objects[regex_match.get_string()].position = Vector2((graph_lines.size()-line_count) * 100 + 500, star_idx * 100 + 500)
+				# no idea why this started getting "33" as a match, but it seems to work nonetheless
+				if objects.has(regex_match.get_string()):
+					objects[regex_match.get_string()].position = Vector2((graph_lines.size()-line_count) * 100 + 500, star_idx * 100 + 500)
 				
 		for ref in all_refs_cache:
 			var target_reference = objects[ref].children.keys()[0]
