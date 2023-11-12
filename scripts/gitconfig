@@ -16,3 +16,9 @@
 	gpgsign = false
 [pull]
 	rebase = false
+[color]
+  ui = always
+	branch = always
+	diff = always
+	interactive = always
+	status = always
