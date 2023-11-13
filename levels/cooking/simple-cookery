@@ -29,7 +29,6 @@ Anyway, can you follow this simple recipe? I forgot what it results into, but le
 touch pot
 git add .
 GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "I put the pot on the stove"
-git branch -D main
 
 [actions]
 
