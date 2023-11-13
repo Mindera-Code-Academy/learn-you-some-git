@@ -48,9 +48,6 @@ margin_top = 59.0538
 margin_right = 126.09
 margin_bottom = 98.0538
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Button2" type="Button" parent="."]
 margin_left = 138.588
@@ -90,6 +87,7 @@ text = "To the survey /o/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="Button" to="." method="back"]
 [connection signal="pressed" from="Button2" to="." method="reload"]
 [connection signal="pressed" from="HelpLabel/Button3" to="." method="onSurveyPressed"]

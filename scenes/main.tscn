@@ -119,9 +119,6 @@ size_flags_vertical = 3
 bbcode_enabled = true
 bbcode_text = "Level description here!"
 text = "Level description here!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LevelCongrats" type="RichTextLabel" parent="Rows/Columns/RightSide/LevelInfo/LevelPanel/Text"]
 visible = false
@@ -199,9 +196,6 @@ margin_top = 5.13129
 margin_right = 636.864
 margin_bottom = 44.1313
 custom_constants/separation = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BackButton" type="Button" parent="Menu"]
 margin_right = 65.0
