@@ -1,4 +1,4 @@
-name = "oh-my-git"
+name = "learn-you-some-git"
 
 all: linux macos windows
 
