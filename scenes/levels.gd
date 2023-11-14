@@ -38,6 +38,9 @@ func reload():
 	
 	#final_chapter_sequence += chapter_names
 	
+	# TODO HACK: only add in sandbox in case it's not already there
+	final_chapter_sequence.push_back("sandbox")
+	
 	for c in final_chapter_sequence:
 		var chapter = Chapter.new()
 		chapter.load("res://levels/%s" % c)
