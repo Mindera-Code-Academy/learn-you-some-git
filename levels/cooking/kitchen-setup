@@ -1,0 +1,40 @@
+title = Stove, lights, action!
+cards = init cooking-name
+
+[description]
+
+Welcome to the kitchen! In this kitchen, we'll be using some special technology, git!
+It will provide us with a special workbench with a time-travelling pot! The pot is so safe, you don't need to worry about breaking it - you can always revert it to what it was before! Cooking is easy now!
+
+Anyway, let's start it up! First, write in your name on your nametag and initialize the kitchen.
+Drag those blue card up to play them!
+
+
+[setup]
+
+git config --global user.name "You"
+rm -rf .git
+
+[actions]
+
+git log 2>&1 | grep "does not have" && touch pot && git add pot && git commit -m "I put the pot on the stove"
+
+[win]
+
+# Setup the kitchen
+test -d .git 
+
+# Write your name on your nametag
+test "$(git config user.name)" != "You"
+
+[congrats]
+
+Nice! See that little blue thing that appeared on the left? It will be your companion, and always show you where you are in time! Try grabbing that "main" thing and give it a little joyride, I'm sure the blue thing appreciates it.
+
+Also, have you noticed that both these cards have differently colored titles? Whenever you see a black one, try to remember it - it's an actual git command you can also type on the terminal down there.
+
+The pot's there too! You can double click the pot to open it and edit it directly, but I'd say that's cheating if you use it on the next levels!
+Oh, speaking of, look at that red button at the top too! Isn't it soooooooooooo clickable? 
+
+
+

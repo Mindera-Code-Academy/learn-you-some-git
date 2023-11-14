@@ -187,13 +187,14 @@
     {
         "id": "cooking-ingredient",
         "command": "echo [string] >> pot",
+        "displayCommand": "Add ingredient!",
         "description": "Add an ingredient of your choice to the pot."
     },
     {
         "id": "cooking-commit",
-        "displayCommand": "Let him cook!",
+        "displayCommand": "Let them cook!",
         "command": "git add pot; git commit -m 'I added some ingredients!'; echo '20 minutes of heat' >> pot; git add pot; git commit -m 'Added heat...'",
-        "description": "Close the pot and let it cook."
+        "description": "Close the pot and heat for specifically 20 minutes."
     },
     {
         "id": "cooking-cat",
@@ -241,5 +242,11 @@
         "displayCommand": "Show changes",
         "command": "git show [commit]",
         "description": "Show the changes for each moment in time!"
-    }
+    },
+    {
+        "id": "cooking-name",
+        "displayCommand": "Write nametag!",
+        "command": "git config --global user.name [string]",
+        "description": "Write down your name.\n\n(A prompt will pop up to ask for it)"
+    },
 ]
