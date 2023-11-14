@@ -21,9 +21,7 @@ func _ready():
 	mutex = Mutex.new()
 	load_state()
 	
-	if OS.has_feature("standalone"):
-		get_tree().set_auto_accept_quit(false)
-	else:
+	if (not OS.has_feature("standalone")):
 		game.toggle_music()
 	
 	if OS.get_name() == "Windows":
@@ -71,12 +69,6 @@ func _bash_executable():
 
 func shell_received(text):
 	print(text)
-
-func _notification(what):
-	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		#get_tree().quit() # default behavio
-		get_tree().change_scene("res://scenes/survey.tscn")
-		
 
 func copy_script_to_game_env(name):
 	create_file_in_game_env(name, helpers.read_file("res://scripts/%s" % name))
@@ -128,9 +120,6 @@ func notify(text, target=null, hint_slug=null):
 		state["received_hints"].push_back(hint_slug)
 		save_state()
 		
-func open_survey():
-	OS.shell_open("https://docs.google.com/forms/d/e/1FAIpQLSehHVcYfELT59h6plcn2ilbuqBcmDX3TH0qzB4jCgFIFOy_qg/viewform")
-	
 func toggle_music():
 	var music = game.find_node("Music")
 	if music.volume_db > -20:
