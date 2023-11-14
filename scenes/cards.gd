@@ -34,7 +34,7 @@ func draw_rand_card():
 	var card = deck[randi() % deck.size()]
 	draw_card(card)
 
-func draw_card(card):
+func draw_card(card, is_first = false):
 	var new_card = preload("res://scenes/card.tscn").instance()
 	
 	new_card.id = card["id"]
@@ -44,6 +44,7 @@ func draw_card(card):
 	new_card.description = card["description"]
 	new_card.energy = 0 #card.energy
 	new_card.position = Vector2(rect_size.x, rect_size.y*2)
+	new_card.is_first = is_first
 	add_child(new_card)
 	arrange_cards()
 	
@@ -51,8 +52,9 @@ func draw(ids):
 	for card in get_tree().get_nodes_in_group("cards"):
 		card.queue_free()
 		
-	for id in ids:
-		draw_card(card_store[id])
+		
+	for i in range(ids.size()):
+		draw_card(card_store[ids[i]], i == 0)
 	
 	arrange_cards()
 	

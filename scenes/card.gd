@@ -3,7 +3,9 @@ extends Node2D
 var hovered = false
 var dragged = false
 var drag_offset
+var position_when_hovered = null
 
+export var is_first = false
 export var id = "" setget set_id
 export var command = "" setget set_command
 export var display_command = "" setget set_display_command
@@ -30,12 +32,16 @@ func _process(delta):
 	if dragged:
 		var mousepos = get_viewport().get_mouse_position()
 		global_position = mousepos - drag_offset
-	
+
 	var target_scale = 1
+	var target_position = global_position
 	
 	if hovered and not dragged:
 		target_scale = 1.5
-	
+		if is_first:
+			target_position = position_when_hovered + Vector2(100, 0)
+
+	global_position = lerp(global_position, target_position, 10*delta)
 	scale = lerp(scale, Vector2(target_scale, target_scale), 10*delta)
 
 func _unhandled_input(event):
@@ -82,10 +88,14 @@ func _turn_off_highlights():
 				
 func _mouse_entered():
 	hovered = true
+	position_when_hovered = global_position
 	z_index = 1
 
 func _mouse_exited():
 	hovered = false
+	print("exited")
+	global_position = position_when_hovered
+	position_when_hovered = null
 	z_index = 0
 	
 func set_command(new_command):
