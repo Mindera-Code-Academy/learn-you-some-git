@@ -155,6 +155,10 @@ func dropped_on(other):
 		if (command.begins_with("git checkout") or command.begins_with("git rebase") or command.begins_with("git branch -D")) and argument.begins_with("refs/heads"):
 			argument = Array(argument.split("/")).pop_back()
 			
+		# ugly hack for git switch
+		if (command.begins_with("git switch")):
+			argument = argument.replace("refs/heads/", "")
+			
 		var arg_regex = RegEx.new()
 		arg_regex.compile("\\[(.*)\\]")
 		var full_command = arg_regex.sub(command, argument)

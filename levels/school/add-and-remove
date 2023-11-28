@@ -1,0 +1,42 @@
+title = Adding and removing
+cards = add restore-staged restore status
+
+[description]
+
+Let's go back to the kitchen! 
+You stand before two open pots, and your cooking friend already threw a couple of ingredients to the pots ready for you to review. Sadly, though, you had decided to just put things on the first pot, and yet the second pot is already full and its changes ready to be committed! We must fix this, for arbitrary reasons!
+
+(A refresher: files with a far-away purple shadow aren't in the index, and the ones with a closer one, are. Your friend kinda did things backwards here...)
+
+Remember to run git status!
+
+[setup]
+
+touch left_pot
+touch right_pot
+git add .
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "Both pots put on the stove"
+
+echo "Hateno Cheese" >> right_pot
+echo "Goron Spice" >> right_pot
+echo "Hylian Rice" >> right_pot
+
+git add right_pot
+
+echo "parsnips" >> left_pot
+echo "an entire jar of ketchup...?" >> left_pot
+
+[win]
+
+# Make sure the second pot's ingredients aren't staged
+test "$(echo $(git diff --cached right_pot | wc -l))" = 0
+
+# And make sure the first pot's ingredients are!
+test "$(echo $(git diff --cached left_pot | wc -l))" != 0
+
+[congrats]
+
+Ah, much better. Time to cook the food!
+Have you used the card without "--staged" when trying to remove the file's changes from the index and noticed it did nothing? Try using it now - but prepare
+
+Let's go and start committing this!

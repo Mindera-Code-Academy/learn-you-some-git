@@ -25,6 +25,17 @@
         "description": "Drag this card to a commit or to a branch to travel to it!"
     },
     {
+        "id": "checkout-strict",
+        "command": "git checkout [commit]",
+        "description": "Drag this card to a commit to travel to it!"
+    },
+    {
+        "id": "grow-tree",
+        "displayCommand": "Grow the tree!",
+        "command": "git commit --allow-empty -m 'Go tree go!'",
+        "description": "Help the tree grow! Creates a commit."
+    },
+    {
         "id": "checkout-file",
         "command": "git checkout [file]",
         "description": "Reset changes in a local file."
@@ -95,6 +106,26 @@
         "description": "Jump to the commit, and update the index. Keep the current environment."
     },
     {
+        "id": "restore-staged",
+        "command": "git restore --staged [file]",
+        "description": "Removes a file's changes from the index, without touching the file's contents."
+    },
+    {
+        "id": "restore",
+        "command": "git restore [file]",
+        "description": "Removes a file's changes from the index, touching the file's contents."
+    },
+    {
+        "id": "switch",
+        "command": "git switch [ref]",
+        "description": "Switch to specific branch."
+    },
+    {
+        "id": "switch-create",
+        "command": "git switch --create [string]",
+        "description": "Create and switch to specific branch from current commit."
+    },
+    {
         "id": "reset-file",
         "command": "git reset [file]",
         "description": "Reset the index version of a file to the version in the commit you're on."
@@ -150,6 +181,11 @@
         "description": "Create a new branch at your current location."
     },
     {
+        "id": "branch-list",
+        "command": "git branch",
+        "description": "Show all branches."
+    },
+    {
         "id": "branch-delete",
         "command": "git branch -D [ref]",
         "description": "Delete a branch."
@@ -158,6 +194,31 @@
         "id": "reflog",
         "command": "git reflog [ref, head]",
         "description": "Display a log of where the ref pointed to in the past."
+    },
+    {
+        "id": "log",
+        "command": "git log",
+        "description": "Display the git tree."
+    },
+    {
+        "id": "status",
+        "command": "git status",
+        "description": "Display the index status."
+    },
+    {
+        "id": "stash",
+        "command": "git stash",
+        "description": "Stash your untracked changes."
+    },
+    {
+        "id": "stash-pop",
+        "command": "git stash pop",
+        "description": "Display the index status."
+    },
+    {
+        "id": "stash-list",
+        "command": "git stash list",
+        "description": "Display list of stored stashes."
     },
     {
         "id": "file-new",

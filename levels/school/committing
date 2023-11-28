@@ -1,0 +1,58 @@
+title = Committing to the cooking!
+cards = add restore-staged restore status commit
+
+[description]
+
+And through some good old fashioned TV magic, we have the results of your cooking right here! It didn't quite turn out good, maybe try it again, maybe with a proper recipe?
+
+Courser Bee Honey
+Prime Meat
+
+Put those two ingredients in the first pot (replace what's there), and add both pots to the index! After that, commit, and we'll see what pops up!
+
+[setup]
+
+touch left_pot
+touch right_pot
+git add .
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "Both pots put on the stove"
+
+echo "Hateno Cheese" >> right_pot
+echo "Goron Spice" >> right_pot
+echo "Hylian Rice" >> right_pot
+
+echo "parsnips" >> left_pot
+echo "an entire jar of ketchup...?" >> left_pot
+
+git add left_pot
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "Closed the lids!"
+echo "?????" > left_pot
+git add left_pot
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" -m "30 minutes of heat..."
+
+
+git add right_pot
+echo "Courser Bee Honey" >> left_pot
+echo "Prime Meat" >> left_pot
+git add left_pot
+
+[win]
+
+# Add the second pot's ingredients to the index!
+git grep --cached "Hateno Cheese" && git grep --cached "Goron Spice" && git grep --cached "Hylian Rice" && touch ./.git/cool || cat ./.git/cool
+
+# And replace the first pot's mess with new ingredients!
+git grep --cached "Courser Bee Honey" && git grep --cached "Prime Meat" && touch ./.git/cool2 || cat ./.git/cool2
+
+# Commit the result!
+cat ./.git/cool && cat ./.git/cool2 && test "$(git rev-list --count main)" -gt 3 && touch ./.git/action || cat ./.git/action
+
+[actions]
+
+cat ./.git/cool && cat ./.git/cool2 && test "$(git rev-list --count main)" = 4 && echo "Glazed Meat!" > "left_pot" && echo "Cheesy Curry!" > "right_pot" && git add . && git commit -m "30 minutes of heat..."
+
+[congrats]
+
+Oh, nice! 
+
+I've taken the liberty of using that TV magic again, and already time-travelled your pots 30 minutes in the future. Check them out!

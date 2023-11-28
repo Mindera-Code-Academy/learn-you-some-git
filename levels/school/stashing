@@ -1,0 +1,154 @@
+title = Oh no, the feds! Stash it!
+cards = stash stash-pop stash-list status switch show commit add 
+
+[description]
+
+Here's a completelly purely hypothetical situation:
+
+While developing your new feature, just before starting to add files to the index and committing your hard work, you realise you're on the wrong branch all along! Oh no!
+
+But this is exactly what stash is for. You can use stash to keep all your changes stored safe, then safely switch to the latest branch, and re-do all the changes you stashed. Let's do just that!
+
+[setup]
+
+cat << JAVA > Calculator.java
+public class Calculator {
+
+    /**
+     * Multiplies two numbers represented as strings.
+     *
+     * @param num1 the first number as a string
+     * @param num2 the second number as a string
+     * @return the product of num1 and num2 as a string, or an error message if inputs are invalid
+     */
+    public static String multiply(String num1, String num2) {
+        return "";
+    }
+
+    /**
+     * Adds two numbers represented as strings.
+     *
+     * @param num1 the first number as a string
+     * @param num2 the second number as a string
+     * @return the sum of num1 and num2 as a string, or an error message if inputs are invalid
+     */
+    public static String add(String num1, String num2) {
+        return "";
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        System.out.println(add("5", "3")); // Output: 8.0
+        System.out.println(multiply("5", "3")); // Output: 15.0
+        System.out.println(multiply("a", "3")); // Output: Invalid input: Both inputs must be numbers.
+    }
+}
+JAVA
+git add .
+git commit -m "First commit"
+cat << JAVA2 > Calculator.java
+public class Calculator {
+
+    /**
+     * Multiplies two numbers represented as strings.
+     *
+     * @param num1 the first number as a string
+     * @param num2 the second number as a string
+     * @return the product of num1 and num2 as a string, or an error message if inputs are invalid
+     */
+    public static String multiply(String num1, String num2) {
+        try {
+            double number1 = Double.parseDouble(num1);
+            double number2 = Double.parseDouble(num2);
+            
+            return String.valueOf(number1 * number2);
+        } catch (NumberFormatException e) {
+            return "Invalid input: Both inputs must be numbers.";
+        }
+    }
+
+    /**
+     * Adds two numbers represented as strings.
+     *
+     * @param num1 the first number as a string
+     * @param num2 the second number as a string
+     * @return the sum of num1 and num2 as a string, or an error message if inputs are invalid
+     */
+    public static String add(String num1, String num2) {
+        return "";
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        System.out.println(add("5", "3")); // Output: 8.0
+        System.out.println(multiply("5", "3")); // Output: 15.0
+        System.out.println(multiply("a", "3")); // Output: Invalid input: Both inputs must be numbers.
+    }
+}
+JAVA2
+git add .
+git commit -m "Add multiplication"
+git checkout HEAD~1
+cat << JAVA > Calculator.java
+public class Calculator {
+
+    /**
+     * Multiplies two numbers represented as strings.
+     *
+     * @param num1 the first number as a string
+     * @param num2 the second number as a string
+     * @return the product of num1 and num2 as a string, or an error message if inputs are invalid
+     */
+    public static String multiply(String num1, String num2) {
+        return "";
+    }
+
+    /**
+     * Adds two numbers represented as strings.
+     *
+     * @param num1 the first number as a string
+     * @param num2 the second number as a string
+     * @return the sum of num1 and num2 as a string, or an error message if inputs are invalid
+     */
+    public static String add(String num1, String num2) {
+        try {
+            double number1 = Double.parseDouble(num1);
+            double number2 = Double.parseDouble(num2);
+
+            return String.valueOf(number1 + number2);
+        } catch (NumberFormatException e) {
+            return "Invalid input: Both inputs must be numbers.";
+        }
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+        System.out.println(add("5", "3")); // Output: 8.0
+        System.out.println(multiply("5", "3")); // Output: 15.0
+        System.out.println(multiply("a", "3")); // Output: Invalid input: Both inputs must be numbers.
+    }
+}
+
+JAVA
+
+[actions]
+
+cat Calculator.java | grep "number1 + number2" && cat Calculator.java | grep "number1 \* number2" && git gc --aggressive --prune=now
+
+[win]
+
+# Stash your changes
+git stash list | grep "{0}" && touch ./.git/has_stashed || cat ./.git/has_stashed
+
+# Apply them to the top-most commit!
+cat Calculator.java | grep "number1 + number2" && cat Calculator.java | grep "number1 \* number2" 
+
+# Commit your changes!
+
+test "$(git rev-list --count main)" = 3 && git grep "number1 + number2" && git grep "number1 \* number2" 
+
+[congrats]
+
+Well done! As you can see, by using the index, stashes, and commits you can quickly change your work from one place to another! We can also do that with commits, but that comes soon...
+
+In the meantime, what's up with those strange commits created as soon as you create a stash? Were you expecting that many? Check them out with git show!

@@ -1,0 +1,43 @@
+title = Checking things out with git log
+cards = log show
+
+[description]
+
+We need you to play detective for a while. 
+We have a crimescene on our hands. Fortunately the entire thing was recorded with git, but due to budgetary cuts, nobody on the force knows how to use git. Maybe you can help us?
+
+Please fill in the report and help us catch the criminal!
+
+[setup]
+
+echo "Who did it? (the git commit author): " > solution
+
+echo "He's alive!" > victim
+git add victim
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" -m "Start tracking"
+
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+
+#murder!
+echo "Oh no, he's dead!" > victim
+git add victim
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Crime <john@crime.org>" --date="Wed Feb 16 14:00 2011 +0100" -m "Another day passes!"
+
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --author="John Doe <john@doe.org>" --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Another day passes!"
+
+[win]
+# Fill in the solution report!
+cat solution | tr '[:upper:]' '[:lower:]' | grep 'john crime'
+[congrats]
+
+Well done! John Crime won't see daylight ever again!

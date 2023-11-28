@@ -1,0 +1,46 @@
+title = Helping the tree grow!
+cards = branch-list switch switch-create reset checkout-strict grow-tree
+
+[description]
+
+Couldn't have a tree metaphor without a gardening exercise, hope you have a green thumb!
+We're just dealing with a regular tree this time around. You have two jobs here:
+
+- Your friend grew the "help" branch, but something happened and they say they lost their commits... You can see them from your perspective, can you help them?
+- Time to make our own branch! Use the same base as your friend, but make yours bigger :D
+
+[setup]
+git commit 
+
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Go tree go!"
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Go tree go!"
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Go tree go!"
+GIT_COMMITTER_DATE="Wed Feb 16 14:00 2011 +0100" git commit --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Go tree go!"
+git commit --date="Wed Feb 16 14:00 2011 +0100" --allow-empty -m "Go tree go!"
+
+git checkout HEAD~3 
+
+git switch -c help
+
+git commit --author="Your friend! <friend@person.org>" --allow-empty -m "Branching out!"
+git commit --author="Your friend! <friend@person.org>" --allow-empty -m "Branching out!"
+git commit --author="Your friend! <friend@person.org>" --allow-empty -m "On top of the world!"
+
+git reset --hard HEAD~2
+
+git checkout main
+
+[win]
+
+# Help the "help" branch!
+echo $(git log -n 1 help) | grep "On top of the world"
+
+# Make your own "grow" branch from your friend's base
+git log grow && echo $(git log grow) | grep 0861
+
+# Make it the largest!
+test $(git rev-list --count grow) -gt $(git rev-list --count main) && test $(git rev-list --count grow) -gt $(git rev-list --count help) 
+
+[congrats]
+
+Wonderful! What a great tree! Just in time for the festive seasons!
