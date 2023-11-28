@@ -41,7 +41,7 @@ func _process(delta):
 		if is_first:
 			target_position = position_when_hovered + Vector2(100, 0)
 
-	global_position = lerp(global_position, target_position, 10*delta)
+	#global_position = lerp(global_position, target_position, 10*delta)
 	scale = lerp(scale, Vector2(target_scale, target_scale), 10*delta)
 
 func _unhandled_input(event):
