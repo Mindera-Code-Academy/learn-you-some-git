@@ -1,5 +1,5 @@
 title = Merging timelines
-cards = checkout commit-auto merge
+cards = checkout-strict switch commit-auto merge
 
 [description]
 

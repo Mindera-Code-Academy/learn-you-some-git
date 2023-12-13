@@ -1,5 +1,5 @@
 title = Abort a merge
-cards = checkout commit-auto merge merge-abort
+cards = checkout-strict switch commit-auto merge merge-abort
 
 [description]
 

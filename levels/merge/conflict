@@ -1,5 +1,5 @@
 title = Contradictions
-cards = checkout commit-auto merge reset-hard
+cards = checkout-strict commit-auto merge reset-hard switch
 
 [description]
 

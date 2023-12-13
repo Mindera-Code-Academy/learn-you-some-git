@@ -1,11 +1,11 @@
 title = Restore a deleted file
-cards = checkout
+cards = restore
 
 [description]
 
 Oops - you deleted the "essay" file, which you worked on all night!
 
-Luckily, Git is here to help! You can use `git checkout` to restore the file!
+Luckily, Git is here to help! You can use `git restore` to restore the file!
 
 [setup]
 

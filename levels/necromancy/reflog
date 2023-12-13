@@ -1,5 +1,5 @@
 title = Go back to where you were before
-cards = checkout reflog
+cards = checkout-strict switch reflog
 
 [description]
 
